@@ -44,12 +44,9 @@ function Navbar() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            React Form
-                        </Typography>
                         <Link className="item" exact to="/"><Button color="inherit">Signup</Button></Link>
                         <Link className="item" to="/login"><Button color="inherit">Login</Button></Link>
-                        <Link className="item" to="/profile"><Button color="inherit">addpost</Button></Link>
+                        <Link className="item" to="/profile"><Button color="inherit">Post</Button></Link>
                         <Link className="item" to="/login" onClick={logout}><Button color="inherit">Log out</Button></Link>
 
                         {/* <Link className="item" to="/dashboard"><Button onClick={dashboard} color="inherit">dashboard</Button></Link> */}
