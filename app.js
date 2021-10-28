@@ -4,6 +4,8 @@ const app = express()
 const path = require('path')
 var cors = require('cors')
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs')
+const { Schema } = mongoose;
 
 app.use(cors(["localhost:5000", "localhost:3000"]))
 app.use(express.json())
@@ -13,23 +15,33 @@ app.use('/', express.static(path.join(__dirname, 'web-frontend/build')))
 
 mongoose.connect("mongodb+srv://ahsan:form123@users.rpo2j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
-const User = mongoose.model('User', {
+
+const UserSchema = new mongoose.Schema({
 
     name: String,
     email: String,
     password: String,
     phone: Number
 
-});
+})
+
+UserSchema.pre('save', async function (next)
+{
+    console.log("hihihi")
+    if(this.isModified('password')){
+        this.password = await bcrypt.hash(this.password,12)
+    }
+    next()
+})
+
+
+
+const User = mongoose.model('User', UserSchema);
 
 const Post = mongoose.model('Post', {
-
-    // name: String,
-    name:String,
+    name: String,
     caption: String,
-    email:String
-    // password: String,
-    // phone: Number
+    email: String
 
 });
 
@@ -63,7 +75,7 @@ app.post('/api/v1/signup', (req, res) => {
             phone: req.body.phone
         });
 
-
+        
 
         newUser.save(() => {
             console.log("Data Saved in MondoDB")
@@ -106,8 +118,8 @@ app.post('/api/v1/signup', (req, res) => {
 
 app.get('/api/v1/profile', (req, res) => {
     Post.find()
-    .then(admdata=>res.json(admdata))
-    .catch(err=>res.status(400).json('Error: ' + err));
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
 }
 )
 

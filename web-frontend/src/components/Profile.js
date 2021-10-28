@@ -60,6 +60,9 @@ function Profile() {
     
 
     useEffect(() => {
+
+        if (localStorage.getItem('name') && localStorage.getItem('email')) {
+
         axios.get(`${baseurl}/api/v1/profile`)
             .then(response => {
                 console.log(response)
@@ -67,6 +70,11 @@ function Profile() {
                 setProfile(response.data)
             })
             .catch(err => alert("Error in getting data"))
+        }
+        else{
+            alert("Login First")
+            history.push('/login')
+        }
     }, [toggleGetUser])
 
 
@@ -84,14 +92,19 @@ function Profile() {
     },
     );
 
+    function dash(){
+        history.push("/dashboard")
+    }
 
     return (
         <>
-            <div className="container">
+            <div className="app-main">
                 <div className="post-main">
+                    Your Profile 
+                    <button className="dashbtn" onClick={dash}>Dashboard</button>
                     <form id="post-form" onSubmit={formik.handleSubmit}>
 
-                        <h3> What's on Your Mind </h3>
+                        <h3 style={{padding:"5%"}}> What's on Your Mind </h3>
 
 
                         <TextField
@@ -100,6 +113,7 @@ function Profile() {
                             label="post"
                             type="caption"
                             className="box"
+                            id="postbox"
 
                             value={formik.values.caption}
                             onChange={formik.handleChange}

@@ -40,6 +40,7 @@ function Loginform() {
         console.log(res.data);
         localStorage.setItem('name',res.data.name)
         localStorage.setItem('email',res.data.email)
+        localStorage.setItem('phone',res.data.phone)
         alert('User Logined')
 
         if (res.data.email) {
@@ -70,7 +71,7 @@ function Loginform() {
 
   return (
     <>
-      <div className="container">
+      <div className="app-main">
         <div className="main">
           <form onSubmit={formik.handleSubmit}>
 
@@ -80,7 +81,7 @@ function Loginform() {
               id="outlined-basic"
               name="email"
               label="email"
-              className="box"
+              className="inputbox"
               value={formik.values.email}
               onChange={formik.handleChange}
 
@@ -95,7 +96,7 @@ function Loginform() {
               name="password"
               label="password"
               type="password"
-              className="box"
+              className="inputbox"
 
               value={formik.values.password}
               onChange={formik.handleChange}

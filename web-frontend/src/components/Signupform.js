@@ -74,7 +74,7 @@ function Signupform() {
 
   return (
     <>
-      <div className="container"> 
+      <div className="app-main"> 
         <div className="main">
           <form onSubmit={formik.handleSubmit}>
 
@@ -84,7 +84,7 @@ function Signupform() {
               id="outlined-basic"
               name="name"
               label="name"
-              className="box"
+              className="inputbox"
 
               value={formik.values.name}
               onChange={formik.handleChange}
@@ -100,7 +100,7 @@ function Signupform() {
               id="outlined-basic"
               name="email"
               label="email"
-              className="box"
+              className="inputbox"
               value={formik.values.email}
               onChange={formik.handleChange}
 
@@ -114,7 +114,7 @@ function Signupform() {
               id="outlined-basic"
               name="phone"
               label="phone"
-              className="box"
+              className="inputbox"
               value={formik.values.phone}
               onChange={formik.handleChange}
 
@@ -130,7 +130,7 @@ function Signupform() {
               name="password"
               label="password"
               type="password"
-              className="box"
+              className="inputbox"
 
               value={formik.values.password}
               onChange={formik.handleChange}

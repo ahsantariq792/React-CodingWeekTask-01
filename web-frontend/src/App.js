@@ -1,9 +1,9 @@
 import './App.css';
-import Navbar from './components/Navbar';
 import Signup from './components/Signupform';
 import Login from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
+import SearchAppBar from './components/SearchAppBar';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <SearchAppBar />
         <Switch>
           <Route path="/dashboard">
             <Dashboard />
